@@ -12,8 +12,8 @@
 <h1>Question :</h1>
 <%if (q != null) %>
 <p><%= q.GetQuestion() %></p>
-<form action="quiz" method="post">
-<input type="hidden" name="questionId" value="<%q.GetId();%>">
+<form action="quiz" method="POST">
+<input type="hidden" name="questionId" value="<%= q.GetId()%>">
 Votre reponse : <input type="text" name="reponse" required>
 <input type="submit" value="valider">
 </form>

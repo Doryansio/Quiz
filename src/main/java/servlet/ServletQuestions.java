@@ -32,9 +32,13 @@ public class ServletQuestions extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		Questions q = DataQuestions.getRandomQuestion();
+		if(q == null) {
+			response.getWriter().println("Aucune reponse disponible !");
+			return;
+		}
 		request.setAttribute("question", q);
-		request.getRequestDispatcher("./quiz.jsp").forward(request, response);
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.getRequestDispatcher("/quiz.jsp").forward(request, response);
+		
 	}
 
 	/**
@@ -42,16 +46,31 @@ public class ServletQuestions extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int questionId = Integer.parseInt(request.getParameter("questionId"));
+		String idStr = request.getParameter("questionId");
+		if(idStr == null || idStr.isEmpty()) {
+			response.getWriter().println("Erreur: Id de question manquant");
+			return;
+		}
+		int questionId;
+		try {
+			questionId = Integer.parseInt(idStr);
+		}catch(NumberFormatException e)
+		{
+			response.getWriter().println("ID de question invalide");
+			return;
+		}
+		
 		String reponseUtilisateur= request.getParameter("reponse").trim();
 		Questions q = DataQuestions.GetId(questionId);
 		if(q == null) {
 			response.getWriter().println("Erreur : question introuvable pour id =" + questionId);
 		}
-		boolean correct = q.GetResponse().equalsIgnoreCase(reponseUtilisateur);
+		boolean correct = q.GetResponse().equalsIgnoreCase(reponseUtilisateur.trim());
 		request.setAttribute("question", q);
 		request.setAttribute("reponseUtilisateur", reponseUtilisateur);
 		request.setAttribute("correct", correct);
+		response.getWriter().println("test ok Id = " + request.getParameter("questionId"));
+		request.getRequestDispatcher("/Response.jsp").forward(request, response);
 		
 	}
 

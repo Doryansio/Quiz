@@ -13,15 +13,25 @@ public class DataQuestions {
 		questions.add(new Questions(5,"Quelle est le monument principal de la france ?", "Tour eiffel"));
 	}
 	
-	
+	public void ajouterQuestions() {
+		Questions q;
+		q = new Questions(0, null, null);
+	}
 	public static Questions getRandomQuestion() {
 		Random rand = new Random();
 		return questions.get(rand.nextInt(questions.size()));
 	}
 	public static Questions GetId(int id) {
-		return  questions.stream().filter(q -> q.GetId() == id).findFirst().orElse(null);
+		for(Questions q : questions) {
+			if(q.GetId()== id) return q;
+		}
+		return null;
 	}
-	public static List<Questions> getAll(){
+	public static int count() {
+		return questions.size();
+	}
+	
+	public static List<Questions> GetAllQuestions(){
 		return questions;
 	}
 }
