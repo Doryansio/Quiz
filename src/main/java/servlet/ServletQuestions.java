@@ -65,7 +65,7 @@ public class ServletQuestions extends HttpServlet {
 		if(q == null) {
 			response.getWriter().println("Erreur : question introuvable pour id =" + questionId);
 		}
-		boolean correct = q.GetResponse().equalsIgnoreCase(reponseUtilisateur.trim());
+		boolean correct = q.getResponse().equalsIgnoreCase(reponseUtilisateur.trim());
 		request.setAttribute("question", q);
 		request.setAttribute("reponseUtilisateur", reponseUtilisateur);
 		request.setAttribute("correct", correct);

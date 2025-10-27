@@ -11,14 +11,14 @@ public class Questions {
 		this._response = response;
 	}
 	
-	public int GetId() {
+	public int getId() {
 		return _id;
 	}
 
-	public String GetQuestion() {
+	public String getQuestion() {
 		return _questions;
 	}
-	public String GetResponse() {
+	public String getResponse() {
 		return _response;
 	}
 }

@@ -3,7 +3,7 @@ import java.util.*;
 
 import model.Questions;
 public class DataQuestions {
-	private static List<Questions> questions = new ArrayList();
+	private static List<Questions> questions = new ArrayList<Questions>();
 	
 	static {
 		questions.add(new Questions(1,"Quelle est la capitale de la france ?", "Paris"));
@@ -23,7 +23,7 @@ public class DataQuestions {
 	}
 	public static Questions GetId(int id) {
 		for(Questions q : questions) {
-			if(q.GetId()== id) return q;
+			if(q.getId()== id) return q;
 		}
 		return null;
 	}

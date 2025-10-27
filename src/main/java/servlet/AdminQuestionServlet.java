@@ -36,7 +36,7 @@ public class AdminQuestionServlet extends HttpServlet {
 		List<Questions> liste = DataQuestions.GetAllQuestions();
 		request.setAttribute("listeQuestions", liste);
 		request.getRequestDispatcher("/AdminQuestion.jsp").forward(request, response);
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
 	}
 
 	/**
@@ -44,7 +44,17 @@ public class AdminQuestionServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		List<Questions> liste = DataQuestions.GetAllQuestions();
+		
+		
+		int index = liste.size();
+		System.out.println(index);
+		String questions = request.getParameter("question");
+		String reponse = request.getParameter("reponse");
+		index++;
+		liste.add(new Questions(index, questions, reponse));
+		response.sendRedirect(request.getContextPath() + "/AdminQuestion");
+		
 	}
 
 }

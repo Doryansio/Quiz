@@ -12,7 +12,7 @@ boolean correct = (Boolean) request.getAttribute("correct");
 <title>Insert title here</title>
 </head>
 <body>
-<p>Question : <%=q.GetQuestion()%></p>
+<p>Question : <%=q.getQuestion()%></p>
 <p> Reponse : <b><%= reponseUtilisateur %></b></p>
 
 <% if (correct){ %>
